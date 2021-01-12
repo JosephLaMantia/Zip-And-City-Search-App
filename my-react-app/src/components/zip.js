@@ -22,7 +22,12 @@ class Zip extends React.Component{
             //event.target.zipCode.value <--- how we access the user inputted zip code.
             fetch('http://ctp-zip-api.herokuapp.com/zip/' + event.target.zipCode.value)
              .then(response => response.json())
-             .then(data => console.log(data));
+             .then(function(data) {
+                 let city = data[0].City;
+                 console.log(city);
+                 document.querySelector("label").innerText = city;
+             });
+             
         }
     }
 
@@ -39,6 +44,9 @@ class Zip extends React.Component{
                 type="submit">
                 </input>
             </form>
+            <div>
+                <label></label>
+            </div>
         </div>
             
             );
